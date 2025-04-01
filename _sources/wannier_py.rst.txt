@@ -1,0 +1,165 @@
+wannier\_py package
+===================
+
+Submodules
+----------
+
+wannier\_py.berry\_common module
+--------------------------------
+
+.. automodule:: wannier_py.berry_common
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.bpv module
+----------------------
+
+.. automodule:: wannier_py.bpv
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.bpve module
+-----------------------
+
+.. automodule:: wannier_py.bpve
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.eig module
+----------------------
+
+.. automodule:: wannier_py.eig
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.excition module
+---------------------------
+
+.. automodule:: wannier_py.excition
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.fourier module
+--------------------------
+
+.. automodule:: wannier_py.fourier
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.hc module
+---------------------
+
+.. automodule:: wannier_py.hc
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.input module
+------------------------
+
+.. automodule:: wannier_py.input
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.interface\_deeph module
+-----------------------------------
+
+.. automodule:: wannier_py.interface_deeph
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.main module
+-----------------------
+
+.. automodule:: wannier_py.main
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.model\_ham module
+-----------------------------
+
+.. automodule:: wannier_py.model_ham
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.multitask module
+----------------------------
+
+.. automodule:: wannier_py.multitask
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.output\_to\_file module
+-----------------------------------
+
+.. automodule:: wannier_py.output_to_file
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.parallel module
+---------------------------
+
+.. automodule:: wannier_py.parallel
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.parameter module
+----------------------------
+
+.. automodule:: wannier_py.parameter
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.print\_r module
+---------------------------
+
+.. automodule:: wannier_py.print_r
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.shg module
+----------------------
+
+.. automodule:: wannier_py.shg
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.supercell module
+----------------------------
+
+.. automodule:: wannier_py.supercell
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+wannier\_py.utility module
+--------------------------
+
+.. automodule:: wannier_py.utility
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: wannier_py
+   :members:
+   :show-inheritance:
+   :undoc-members:

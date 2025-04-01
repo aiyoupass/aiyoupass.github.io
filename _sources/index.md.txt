@@ -1,0 +1,20 @@
+# 欢迎使用 WannierPy
+
+::: tip
+
+:::
+
+```{toctree}
+:maxdepth: 2
+:caption: 核心文档
+:glob:
+
+symbol.md
+input.md
+install.md
+parameters.md
+wannier_py.rst
+modules.rst
+```
+
+[API 参考](wannier_py.rst)

@@ -1,0 +1,198 @@
+# All parameters
+## 计算开关参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| INTERFACE | string | 数据接口类型 | "w90" | 目前支持"w90", "vasp", "deeph", "model", 大小写不敏感 |
+| EIGENVALUE | true/false | 能量本征值计算的开关 | false | |
+| BPVE | true/false | BPVE计算的开关 | false | |
+| SHG | true/false | SHG计算的开关 | false | |
+| BPV | true/false | BPV计算的开关 | false | |
+| HALL | true/false | Hall effect计算的开关 | | |
+| PRINT | true/false | 打印中间物理量开关 | false | |
+
+
+## SHG参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| SHG_COMPONENT_RESOLVED | true/false | 按成分区分的SHG | false | |
+| SHG_EI_RESOLVED | true/false | 按inter/intra区分的SHG计算 | false | |
+| SHG_FS_RESOLVED | true/false | 按单/双光子分辨的SHG计算 | false | |
+| SHG_K_RESOLVED | true/false | 按K点分辨的SHG计算 | false | |
+| SHG_BAND_RESOLVED | true/false | 按band分辨的SHG计算 | false | 上述部分选项可以叠加开启 |
+
+## 霍尔效应参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| HALL_K_RESOLVED | true/false | 按K点分辨的Hall效应 | false | |
+| CURRENT_OPERATOR | int | 使用charge/spin/orbit流算符 | 0 | 0为使用charge流算符, 若为1则为spin流算符 |
+| SIGMA_OR_X | true/false | 是否使用Sigma或X算符 | false | 两种流霍尔效应的公式 |
+
+## 物理效应计算分量
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| CALL_ALL | true/false | 是否计算所有物理效应分量 | false | |
+| NSC_ALL | true/false | 是否计算所有NSC分量 | false | Normal shift current |
+| MSC_ALL | true/false | 是否计算所有MSC分量 | false | Magnetic shift current |
+| NIC_ALL | true/false | 是否计算所有NIC分量 | false | Normal injection current |
+| MIC_ALL | true/false | 是否计算所有MIC分量 | false | magnetic injection current |
+| FIR_ALL | true/false | 是否计算所有FIR分量 | false | 一阶光谱 |
+| NSC_CALC | true/false | 计算的NSC分量 | ['012'] | 只计算xyz分量 |
+| MSC_CALC | true/false | 是否计算MSC分量 | ['012'] | 只计算xyz分量 |
+| NIC_CALC | true/false | 是否计算NIC分量 | ['012'] | 只计算xyz分量 |
+| MIC_CALC | true/false | 是否计算MIC分量 | ['012'] | 只计算xyz分量 |
+| FIR_CALC | true/false | 是否计算FIR分量 | ['012'] | 只计算xyz分量 |
+| SHG_ALL | true/false | 是否计算所有SHG分量 | ['012'] | 只计算xyz分量 |
+| SHG_CALC | true/false | 是否计算SHG分量 | ['012'] | 只计算xyz分量 |
+| OHC_ALL | true/false | 是否计算所有OHC分量 | ['012'] | 只计算xyz分量 |
+| OHC_CALC | true/false | 是否计算OHC分量 | ['012'] | 只计算xyz分量 |
+## 并行参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| BLOCK | int | 设置每个进程单次计算分配到的任务量 | 1 | 所有任务被分成约BLOCK*NUMBER_OF_CORES份, 每个CPU核只计算其中至多BLOCK份 |
+| NUMBER_OF_CORES | int | 可用核数 | 62 | 若不设置,默认为所有可用核数-1 |
+| NUMBER_OF_CORES_PC | int | PC模式下的核数 | 4 | 单独为PC端(家用CPU)设置CPU核数 |
+
+## 内存监视设置
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| MEMORY_MONITOR_ENABLED | true/false | 启用内存监视开关 | false | |
+| MEMORY_MONITOR_INTERVAL | int | 内存监视间隔时间（秒） | 600 | 间隔10分钟打印程序内存占用信息 |
+| MEMORY_MONITOR_EACH_PROCESS | true/false | 是否为每个进程启用内存监视 | false | |
+
+## wannier90参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| W90_INPUT_DATA_SOURCE | [int, int, int] | Wannier90数据输入源 | [1, 2, 2] | 表示哈密顿量、位置矩阵和wannier centres分别从0(hr)1(tb)2(AAR)3(wout)4(POSCAR)中读入 |
+| W90_WC_TRANS | [float, float, float] | 对wannier centres作的倍数修正 | [1, 1, 1] | 表示wannier centres的x, y, z坐标分别乘以1 |
+| CELL_CENTER | float | 对wannier centres作的平移修正 | 0.0 | 相当于wannier_centres-=CELL_CENTER |
+| DELETE_WS_CELLS_COUPLE_Z | true/false | 删除z方向各个cell间的相互作用 | false | 设置为true能把bulk的体系转换为slab的体系 |
+| TWO_TB | true/false | 使用spin-up/dn两份单独的输入 | FALSE | |
+CHECK_HERMITIAN
+| CHECK_HERMITIAN | true/false | 检查哈密顿量是否厄米 | FALSE | 仅当R=0时非零哈密顿量厄米 |
+| SUPERCELL_ENABLED | true/false | 开启超胞计算 | FALSE | |
+| SUPERCELL_BUILD_MATRIX | [int, int, int] | 超胞扩展矩阵 | [1, 1, 2] | 相当于在z方向扩展为两倍 |
+| SOC_TO_NONSOC | true/false | 是否从SOC体系转换为非SOC体系 | false | 即保留输入文件中矩阵的spinup-spinup部分 |
+| USE_WANNIER_CENTER | true/false | 是否使用wannier center | true | 即是否使用wannier center构建类布洛赫函数 |
+| USE_WS_DISTANCE | true/false | 是否启用ws_distance修正 | false | 有些体系影响较大，建议开启，需在输入文件路径中放入"wannier90_ws_vec.dat"文件 |
+| USE_DIRECTION | true/false | 是否使用位置矩阵数据开展计算 | true | 影响巨大，默认开启 |
+| TB_FILE | string | TB文件名 | wannier90_tb.dat | 结合上面的路径，完整路径为"INPUT_DIR/TB_FILE" |
+| HR_FILE | string | HR文件名 | wannier90_hr.dat | |
+| WS_FILE | string | WS文件名 | wannier90_ws_vec.dat | |
+| AAR_FILE | string | AAR文件名 | AAR.dat | |
+| UP_TB_FILE | string | UP_TB文件名 | wannier90-up_tb.dat | |
+| DN_TB_FILE | string | DN_TB文件名 | wannier90-dn_tb.dat | |
+| POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
+| LAYERS_COUPLE_MULTIPLE_FAR | float | 远层间耦合倍数 | 1.0 | 远处层间耦合倍数，0表示不考虑远处层间耦合 |
+| LAYERS_COUPLE_MULTIPLE | float | 近层间耦合倍数 | 1.0 | 层间耦合倍数，0表示不考虑层间耦合 |
+| NUM_CHANGE_INTERACT | int | 近层的最大层数 | 1 | 两层的距离大于1层(即两层之间还有别的层)时被认为是远层耦合 |
+
+## 投影参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| PROJECTION_ENABLED | true/false | 启用投影操作开关 | false | 开启投影开关后下面的设置才生效 |
+| PROJECTION_LAYER_PICK | true/false | 选择投影的层 | -1 | -1是不存在的层, 0是第一层, 设置-1等效于不投影 |
+| PROJECTION_DOUBLE_SIDED | true/false | 是否使用两端作用投影算符 | false | P为投影算符, Pa为对a算符作用一端, PaP为作用两端 |
+| PROJECTION_MULTI | true/false | 启用多重投影操作 | false | 程序会分别对多个层进行投影,需要同时设置PROJECTION_LAYER_RANGE |
+| PROJECTION_LAYER_RANGE | true/false | 投影层范围设置 | [0, 5] | 区间左闭右开, 程序会分别对0,1,2,3,4层进行投影 |
+
+
+## VASP参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| LIMIT_BAND_VASP | true/false | 限制使用部分带(VASP) | false | |
+| LIMIT_BAND_RANGE_VASP | [int, int] | 限制带的范围 | [2,12] | |
+| POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
+| USE_P | true/false |是否从vasprun.xml中读取群速度 |  true | |
+| E_SCISSOR | float | 能带剪刀差 | 0.0 | 对能带进行剪刀差修正 |
+
+
+## DEEPH参数
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| PRED_HAM | true/false | 是否使用预测的哈密顿量 | false | 读入DEEPH模型训练/预测的哈密顿量  |
+
+
+## 模型哈密顿量参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| MODEL_HAM_PARA_LIST | [[float, …, float], [float...], …] | 模型哈密顿量函数接受的参数值设置 | [[0.5, 0.1], [0.1, 0.05, 0.0]] | 第一个参数有两个设置值，第二个参数有三个设置值，共进行6=2*2次计算 |
+| MODEL_HAM_PARA_NAME | ['string', 'string'] | 模型哈密顿量函数接受的参数值名称 | ['gamma_SP', 'alpha_SO'] | 第一个参数的名称是'gamma_SP' |
+
+## 体系补充信息
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| ORBIT_LIST | [int, ...] | 轨道成分列表 | [0, 1, 0, 1] | 轨道为s，p，s，p, 共8=1+3+3+1个轨道 |
+| E_FERMI | float | 费米能级 | 0.0 | |
+| SOC | true/false | 体系是否存在自旋轨道耦合 | false | |
+| LAYER_OF_ORBITS | [int...] | 每个轨道分别在哪一层 | [0] | [0, 1, 3, 2]表示四个轨道分别在0, 1, 3, 2层 |
+| ORBITS_OF_LAYERS | [[int...]...] | 每一层有哪些轨道 | | [[1, 2], [3, 4]]（轨道从1开始即使程序是从0开始）表示layer0有0,1两个轨道, layer1有2, 3两个轨道 |
+| LAYER_OF_ATOMS | [int...] | 每个原子分别在哪一层 |  | 无默认值, 需要同时设置ORBIT_LIST |
+| ATOMS_OF_LAYERS | [[int...]...] | 每一层有哪些原子 | | 无默认值, 需要同时设置ORBIT_LIST, 这四个层相关的参数仅需填一个|
+| DOUBLE_DEG | true/false | 系统具有二重简并 | false | |
+
+
+
+
+## K点相关参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| KPOINTS_GENERATION_MODE | string | K点生成模式 | "UNIFORM" | 表示在一个布里渊区内均匀撒点, "LINE"表示线模式撒点（常用于能带计算） |
+| KPOINTS_DENSITY | [int, int, int] | 布里渊区在x, y, z方向各自使用多少个K点 | [100, 100, 1] | 在三个维度的xy维度[0, 1)内均匀取100个点 |
+| KPOINTS_DENSITY_PC | [int, int, int] | PC模式下K点密度设置 | [20, 20, 1] | |
+| LINE_MODE | true/false | 是否启用线模式 | FALSE | |
+| LINE_PATH_POINTS | [[float, float, float]] | 线的端点坐标列表 | [[0.0, 0.0, 0.0], [0.0, 0.5, 0.0], [0.3333, 0.6667, 0.0]] | [Gamma, X, K, Gamma]实际路径是闭合的，最后回到第一个点 |
+| LINE_SAMPLES_COUNT | int | 线模式下的样本数 | 1000 | |
+| CIRCLE_MODE | true/false | 是否启用圆形模式 | false | |
+| CIRCLE_RADIUS | float | 圆形模式下的半径 | 0.01 | |
+| CIRCLE_SAMPLES_COUNT | int | 圆形模式下的样本数 | 500 | |
+| SPHERE_MODE | true/false | 是否启用球形模式 | false | |
+| SPHERE_SAMPLES_COUNT | int | 球形模式下的样本数 | 1000 | |
+| SPHERE_RADIUS | float | 球形模式下的半径 | 0.01 | |
+| CUBE_MODE | true/false | 是否启用立方体模式 | false | |
+| CUBE_SAMPLES_COUNT | int | 立方体模式下的样本数 | [20, 20, 20] | |
+| CUBE_LENGTH | float | 立方体边长 | 0.1 | |
+| CUBE_CENTER | [float, float, float] | 立方体中心位置 | [0.0, 0.0, 0.0] | |
+| K_POINTS_LIST | [[float, float, float]] | K点列表 | [[0.0, 0.0, 0.0], [1.0, 1.0, 1.0]] | |
+
+## 能量和频率参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| E_FERMI_RANGE | [float, float] | 费米能谱的偏移量(eV) | [-1，1] | 实际费米能谱范围是[E_FERMI - 1, E_FERMI + 1] |
+| E_FERMI_SAMPLES_COUNT | int | 费米能谱的采样点个数 | 100 | [E_FERMI - 1, E_FERMI + 1]内取点100个 |
+| E_FERMI_LIST | [float, ...] | 频率列表 | [0.0, 1.0, 2.0, 3.0, 4.0, 5.0] | 设置E_FERMI_LIST后无需再设置E_FERMI_RANGE和E_FERMI_SAMPLES_COUNT |
+| FREQ_LIST | [float, ...] | 频率列表 | [0.0, 1.0, 2.0, 3.0, 4.0, 5.0] | 设置FREQ_LIST后无需再设置FREQ_RANGE和FREQ_SAMPLES_COUNT |
+| FREQ_RANGE | [float, float] | 频率范围(eV) | [0, 5] | |
+| FREQ_SAMPLES_COUNT | int | 频率采样点个数 | 100 | |
+
+## 误差参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| EPS_DELTA | float | 误差容忍度的Delta值 | 0.05 | |
+| EPS_ETA | float | 误差容忍度的Eta值 | 0.02 | |
+| EPS_DEG | float | 误差容忍度的Deg值 | 1e-5 | |
+| EPS_INF | int | 误差容忍度的无穷大值 | 1e60 | |
+
+## 输入输出参数
+
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
+| INPUT_DIR | string | 所有输入文件的路径 | ../ | |
+| INPUT_DIR_PC | string | 输入文件路径(PC) | ./input | |
+| OUTPUT_DIR | string | 输出文件路径 | ./output | |
+| OUTPUT_DAT | true/false | 是否输出.dat文件 | true | 文本文件输出结果的开关 |
+| OUTPUT_NPY | true/false | 是否输出.npy文件 | true | numpy的二进制文件输出结果的开关 |
+| CHECK_HERMITIAN | true/false | 是否检查哈密顿量等输入矩阵是否为厄米矩阵 | false | |
+| CHECK_DEG | true/false | 是否检查哈密顿量算出的哈密顿量的二重简并性 | false | |

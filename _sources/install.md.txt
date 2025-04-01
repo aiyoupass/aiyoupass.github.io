@@ -1,0 +1,22 @@
+# How to insatll this package
+## 安装Python
+无论你在哪个操作系统(win/mac/linux), 又或者是各种类型的平台(x64/arm), 都建议使用miniconda/anaconda来使用Python.
+
+- 如果是在linux上安装, 可以使用清华官方镜像站里, `https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/` 在其中选择需要的版本下载. 如常用的hpc环境, 可以使用 `wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh`命令直接下载在服务器上. 下载好之后安装即可.
+- 也可以在anaconda官网上下载,  `https://www.anaconda.com/download/success`
+
+## 安装wannier_py
+安装好miniconda后, 命令行环境会默认加载(base)环境, 可以使用这个环境也可以通过`conda create --name "env_name" python=3.12`新建环境(建议新建).其中"env_name"是你新建的环境名.
+也可以使用`conda config --set auto_activate_base false`取消默认加载base环境.
+
+加载某个env_name环境(包括默认的base环境)的方式是`conda activate env_name`.通过这个命令加载的保质期是命令行终端结束前.
+
+加载好之后, 可以使用`python`命令使用Python. 通过`pip install`命令安装常用的module/package如`pip install numpy`.
+
+下载好wannier_py的安装文件`wannier_py-*.*.*-py3-none-any.whl`(其中`*.*.*`是版本号)后,可以通过`pip install path/to/wannier_py-*.*.*-py3-none-any.whl`命令安装.安装过程中, 它会自动安装所有所需其他module.请确保良好的网络环境.
+
+如果网络缓慢(几乎是必然如此), 可以临时使用清华源`pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple path/to/wannier_py-*.*.*-py3-none-any.whl`来安装.
+也可以使用`pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple`更改清华源为默认下载源.
+
+安装好之后, 使用`pip show wannier_py`可以看到版本号.
+
