@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>消除较远原子间的相互作用 &mdash; wannier_py 0.4.187 documentation</title>
+  <title>模型哈密顿量的探索 &mdash; wannier_py 0.4.187 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
@@ -109,16 +109,19 @@
 <li class="toctree-l2"><a class="reference internal" href="wannier_py.html#module-contents">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">消除较远原子间的相互作用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">现象</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#input">示例INPUT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">可能的原因</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">可能的方法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">模型哈密顿量的探索</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">消除较远原子间的相互作用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">现象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input">示例INPUT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">可能的原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">可能的方法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#nlo">模型计算NLO的可靠性</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#model-hr">接口-model-hr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">示例INPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nlo">模型计算NLO的可靠性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-hr">接口-model-hr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">示例INPUT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +140,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">消除较远原子间的相互作用</li>
+      <li class="breadcrumb-item active">模型哈密顿量的探索</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/closet.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -147,10 +150,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>消除较远原子间的相互作用<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>模型哈密顿量的探索<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <section id="id2">
-<h2>现象<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2>消除较远原子间的相互作用<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>现象<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>体系选择的是P2-monolayer</p>
 <p>删除掉hr文件中较远原子的相互作用后, 观察能带是否发生改变(最近邻的两个P原子距离约为3.3Å).</p>
 <ul class="simple">
@@ -161,7 +166,7 @@
 <p>我把这个功能添加到我的Code里, 示例的INPUT文件为</p>
 </section>
 <section id="input">
-<h2>示例INPUT<a class="headerlink" href="#input" title="Link to this heading"></a></h2>
+<h3>示例INPUT<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT_DIR_PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;input_file/P2_monolayer/&#39;</span>
 <span class="n">INTERFACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;w90&#39;</span>
 <span class="n">W90_INPUT_DATA_SOURCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
@@ -177,8 +182,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h2>可能的原因<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>可能的原因<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <p>从物理学角度来看，相距7个晶胞的原子间相互作用应该可以忽略，但在使用wannier90时，这些远距离相互作用似乎不能被忽略。</p>
 <p>这现象的根本原因在于wannier90是一种纯数值拟合方法。它只能保证在特定能量区间内重现与第一性原理计算相同的能带结构。有了相同的能带和几何量（位置），就能计算出相同的非线性光学效应（由几何量和能量导数决定）。</p>
 <p>然而，wannier90拟合的本质问题是：它将平面波基组信息转换为局域基信息时，没有施加任何基于实际材料的物理约束, 只是纯粹的数学。作为一种插值方法，它是基于有限信息推断更多信息，这意味着存在无数种可能的拟合方式，都能对原始信息给出相同的结果。</p>
@@ -187,8 +192,8 @@
 这表示, 选取更少的超胞范围, 也能获得相似的能带和NLO量. 但是, 拟合得到的H的hopping矩阵元, 不能代表真实的相互作用强度.</p>
 <p>因此，wannier90拟合得到的hr.dat文件并不能真实反映真实轨道（原子）间的物理相互作用强度，它只能保证使用完整的hr.dat信息进行计算时，能获得与第一性原理计算相似的结果。这正是数值拟合方法的本质特点——缺乏基于真实材料的物理约束。</p>
 </section>
-<section id="id4">
-<h2>可能的方法<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>可能的方法<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>控制拟合时的超胞范围, abacus得到的<code class="docutils literal notranslate"><span class="pre">[-3,</span> <span class="pre">-2,</span> <span class="pre">0]</span></code>已经不算大了, 试着控制到<code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">-1,</span> <span class="pre">0]</span></code>(最近邻). 目前看来abacus比较容易计算(而且计算的NLO更干净, 相比w90在零分量上更接近0). 这样更容易构建纯粹模型的tight-binding model.</p></li>
 <li><p>寻找拥有更少轨道的体系, 手写局域基的哈密顿量(脱离DFT计算再拟合的局限性).</p></li>
@@ -198,15 +203,15 @@
 </section>
 </section>
 <section id="nlo">
-<h1>模型计算NLO的可靠性<a class="headerlink" href="#nlo" title="Link to this heading"></a></h1>
+<h2>模型计算NLO的可靠性<a class="headerlink" href="#nlo" title="Link to this heading"></a></h2>
 <section id="model-hr">
-<h2>接口-model-hr<a class="headerlink" href="#model-hr" title="Link to this heading"></a></h2>
+<h3>接口-model-hr<a class="headerlink" href="#model-hr" title="Link to this heading"></a></h3>
 <p>单纯的把hr, poscar/wout作为模型哈密顿量——接口的输入. (和使用w90接口计算的区别在于, 不使用位置矩阵<span class="math">\(&lt;0n|r|Rm&gt;\)</span>和哈密顿量矩阵的二阶导数信息)</p>
 <p>计算得到的能带和NLO量均正确.</p>
 <p>这证明我的模型哈密顿量计算NLO量的模块写的没问题.</p>
 </section>
-<section id="id5">
-<h2>示例INPUT<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="id6">
+<h3>示例INPUT<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">INPUT_DIR_PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;input_file/MoS2/&#39;</span>
 <span class="n">INTERFACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;model&#39;</span>
 <span class="n">MODEL_FROM_HR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
@@ -227,6 +232,7 @@
 <span class="n">E_FERMI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-2.75</span>
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 
