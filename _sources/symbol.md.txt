@@ -1,26 +1,30 @@
-# Symbol Explanation    
+# Symbol Explanation
+
 ## Berry Phase and Berry Connection
-| 符号 | 含义 |
-|------|------|
-| $n, m, l$ | 表示band或者wannier function的指标 |
-| $\partial_\alpha$ | 表示对$k_\alpha$方向的偏导数 $\partial_{k_\alpha}$ |
-| $\alpha, \beta, \cdots$ 或a, b, c | 表示方向指标 |
-| $O$ | 算符 |
-| $\mathcal{H}, r^{\alpha}$ | 哈密顿量算符, 位置算符 |
-| $H_{Rnm}$ | 以wannier函数为基的哈密顿量矩阵$\Braket{0n\|\mathcal{H}\|Rm}$ |
-| $A^{\alpha}_{Rnm}$ | 以wannier函数为基的位置矩阵$\Braket{0n\|r^\alpha\|Rm}$ |
-| $H^{(W)}_{nm}, A^{(W)}_{\alpha nm}$ | 类布洛赫基下的哈密顿量, 位置矩阵 |
-| $\varepsilon_{kn}, U_{knm}$ | 类布洛赫基转换为布洛赫基产生的特征值(能量本征值)和特征向量 |
-| $H^{(H)}_{nm}=[U^\dagger H_{}^{(W)}U]_{nm}$ | 布洛赫基下的哈密顿量, 常常略去$(H)$ |
-| $A^{(H)}_{\alpha nm}=[U^\dagger A_\alpha^{(W)}U]_{nm}$ | 布洛赫基下的位置矩阵, 常常略去$(H)$ |
-| $H^{\alpha}_{nm}=[U^\dagger \partial_\alpha H^{(W)}U]_{nm}$ | 布洛赫基下的哈密顿量的导数 |
-| $A^{\alpha\beta}_{ nm}=[U^\dagger \partial_\beta A_\alpha^{(W)}U]_{nm}$ | 布洛赫基下的位置矩阵的导数 |
-| $H^{\alpha\beta}_{ nm}=[U^\dagger \partial_{\alpha\beta} H^{(W)}U]_{nm}$ | 布洛赫基下的哈密顿量矩阵的二阶导数 |
-| $\xi^{\alpha}_{nm}$ | Berry connection $i\Braket{u_{n_k}\|\partial_\alpha\|u_{m_k}}$ |
-| $\omega_{nm}$ | 能量差 $\varepsilon_n - \varepsilon_m$ |
-| $v^\alpha_{nm}$ | 速度矩阵元速度 |
-| $r^{\alpha ;\beta}_{nm}$ | Berry connection广义导数的矩阵元 |
-| $\Delta^\alpha_{nm}=v^\alpha_{nn}-v^\alpha_{mm}$ | 群速度 |
+
+| 符号                                                                                                     | 含义                                                             |
+|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| $n, m, l$                                                                                              | 表示band或者wannier function的指标                                    |
+| $\partial_\alpha$                                                                                      | 表示对$k_\alpha$方向的偏导数 $\partial_{k_\alpha}$                      |
+| $\alpha, \beta, \cdots$ 或a, b, c                                                                       | 表示方向指标                                                         |
+| $O$                                                                                                    | 算符                                                             |
+| $\mathcal{H}, r^{\alpha}$                                                                              | 哈密顿量算符, 位置算符                                                   |
+| $H_{Rnm}$                                                                                              | 以wannier函数为基的哈密顿量矩阵$\Braket{0n\|\mathcal{H}\|Rm}$              |
+| $A^{\alpha}_{Rnm}$                                                                                     | 以wannier函数为基的位置矩阵$\Braket{0n\|r^\alpha\|Rm}$                   |
+| $H^{(W)}_{nm}, A^{(W)}_{\alpha nm}$                                                                    | 类布洛赫基下的哈密顿量, 位置矩阵                                              |
+| $\varepsilon_{kn}, U_{knm}$                                                                            | 类布洛赫基转换为布洛赫基产生的特征值(能量本征值)和特征向量                                 |
+| $H^{(H)}_{nm}=[U^\dagger H_{}^{(W)}U]_{nm}$                                                            | 布洛赫基下的哈密顿量, 常常略去$(H)$                                          |
+| $A^{(H)}_{\alpha nm}=[U^\dagger A_\alpha^{(W)}U]_{nm}$                                                 | 布洛赫基下的位置矩阵, 常常略去$(H)$                                          |
+| $H^{\alpha}_{nm}=[U^\dagger \partial_\alpha H^{(W)}U]_{nm}$                                            | 布洛赫基下的哈密顿量的导数                                                  |
+| $A^{\alpha\beta}_{ nm}=[U^\dagger \partial_\beta A_\alpha^{(W)}U]_{nm}$                                | 布洛赫基下的位置矩阵的导数                                                  |
+| $H^{\alpha\beta}_{ nm}=[U^\dagger \partial_{\alpha\beta} H^{(W)}U]_{nm}$                               | 布洛赫基下的哈密顿量矩阵的二阶导数                                              |
+| $\omega_{nm}$                                                                                          | 能量差 $\varepsilon_n - \varepsilon_m$                            |
+| $\xi^{\alpha}_{nm}$                                                                                    | Berry connection $i\Braket{u_{n_k}\|\partial_\alpha\|u_{m_k}}$ |
+| $r^{\alpha}_{nm}$                                                                                      | $(1-\delta_{nm})\xi^{\alpha}_{nm}$                             |
+| $v^\alpha_{nm}$                                                                                        | 速度矩阵元速度                                                        |
+| $r^{\alpha ;\beta}_{nm}$                                                                               | $r^{\alpha}_{nm}$的广义导数                                         |
+| $\Delta^\alpha_{nm}=v^\alpha_{nn}-v^\alpha_{mm}$                                                       | 群速度                                                            |
+| $S^{\alpha;\beta}_{nm}=\partial_\beta S^{\alpha}-i S^{\alpha}_{nm}(\xi^{\beta}_{nn}-\xi^{\beta}_{mm})$ | 广义导数                                                           |
 
 *表 1: 本文使用的数学符号及其含义*
 
