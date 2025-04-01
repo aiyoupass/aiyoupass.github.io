@@ -6,7 +6,7 @@ for science
 
 ```{toctree}
 :maxdepth: 2
-:caption: 核心文档
+:caption: Documentation
 :glob:
 
 symbol.md
