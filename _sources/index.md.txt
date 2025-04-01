@@ -1,7 +1,7 @@
 # 欢迎使用 WannierPy
 
 ::: tip
-for science
+Physical
 :::
 
 ```{toctree}
