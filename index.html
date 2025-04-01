@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>欢迎使用 WannierPy &mdash; wannier_py 0.4.187 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/katex-math.css?v=91adb8b6" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=b81a529c"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/katex.min.js?v=be8ff15f"></script>
+      <script src="_static/auto-render.min.js?v=ad136472"></script>
+      <script src="_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Symbol Explanation" href="symbol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            wannier_py
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">核心文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#berry-phase-and-berry-connection">Berry Phase and Berry Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">How to write INPUT file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#input">INPUT文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#wannier90">wannier90接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input.html#id1">所需数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#id4">体系的微调</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to insatll this package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#python">安装Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#wannier-py">安装wannier_py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">All parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id1">计算开关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#shg">SHG参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id2">霍尔效应参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id3">物理效应计算分量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id4">并行参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id5">内存监视设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#wannier90">wannier90参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id6">投影参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#vasp">VASP参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#deeph">DEEPH参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id7">模型哈密顿量参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id8">体系补充信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#k">K点相关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id9">能量和频率参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id10">误差参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id11">输入输出参数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wannier_py.html">wannier_py package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-berry-common-module">wannier_py.berry_common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpv-module">wannier_py.bpv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpve-module">wannier_py.bpve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-eig-module">wannier_py.eig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-excition-module">wannier_py.excition module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-fourier-module">wannier_py.fourier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-hc-module">wannier_py.hc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-input-module">wannier_py.input module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-interface-deeph-module">wannier_py.interface_deeph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-main-module">wannier_py.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-model-ham-module">wannier_py.model_ham module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-multitask-module">wannier_py.multitask module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-output-to-file-module">wannier_py.output_to_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parallel-module">wannier_py.parallel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parameter-module">wannier_py.parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-print-r-module">wannier_py.print_r module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-shg-module">wannier_py.shg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-supercell-module">wannier_py.supercell module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-utility-module">wannier_py.utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html">消除较远原子间的相互作用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id2">现象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#input">示例INPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id3">可能的原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id4">可能的方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html#nlo">模型计算NLO的可靠性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#model-hr">接口-model-hr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id5">示例INPUT</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">wannier_py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">欢迎使用 WannierPy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="wannierpy">
+<h1>欢迎使用 WannierPy<a class="headerlink" href="#wannierpy" title="Link to this heading"></a></h1>
+<div class="tip docutils">
+<p>for science</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">核心文档</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#berry-phase-and-berry-connection">Berry Phase and Berry Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">How to write INPUT file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#input">INPUT文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#wannier90">wannier90接口</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to insatll this package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#python">安装Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#wannier-py">安装wannier_py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">All parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id1">计算开关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#shg">SHG参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id2">霍尔效应参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id3">物理效应计算分量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id4">并行参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id5">内存监视设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#wannier90">wannier90参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id6">投影参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#vasp">VASP参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#deeph">DEEPH参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id7">模型哈密顿量参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id8">体系补充信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#k">K点相关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id9">能量和频率参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id10">误差参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id11">输入输出参数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wannier_py.html">wannier_py package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-berry-common-module">wannier_py.berry_common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpv-module">wannier_py.bpv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpve-module">wannier_py.bpve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-eig-module">wannier_py.eig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-excition-module">wannier_py.excition module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-fourier-module">wannier_py.fourier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-hc-module">wannier_py.hc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-input-module">wannier_py.input module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-interface-deeph-module">wannier_py.interface_deeph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-main-module">wannier_py.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-model-ham-module">wannier_py.model_ham module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-multitask-module">wannier_py.multitask module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-output-to-file-module">wannier_py.output_to_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parallel-module">wannier_py.parallel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parameter-module">wannier_py.parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-print-r-module">wannier_py.print_r module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-shg-module">wannier_py.shg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-supercell-module">wannier_py.supercell module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-utility-module">wannier_py.utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html">消除较远原子间的相互作用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id2">现象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#input">示例INPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id3">可能的原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id4">可能的方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html#nlo">模型计算NLO的可靠性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#model-hr">接口-model-hr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id5">示例INPUT</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="p">[</span><span class="n">API</span> <span class="n">参考</span><span class="p">](</span><span class="n">wannier_py</span><span class="o">.</span><span class="n">rst</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="symbol.html" class="btn btn-neutral float-right" title="Symbol Explanation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Chengzhi Wu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

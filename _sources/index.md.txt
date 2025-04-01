@@ -1,0 +1,21 @@
+# 欢迎使用 WannierPy
+
+::: tip
+for science
+:::
+
+```{toctree}
+:maxdepth: 2
+:caption: 核心文档
+:glob:
+
+symbol.md
+input.md
+install.md
+parameters.md
+wannier_py.rst
+closet.md
+```
+```
+
+[API 参考](wannier_py.rst)

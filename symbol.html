@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symbol Explanation &mdash; wannier_py 0.4.187 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/katex-math.css?v=91adb8b6" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=b81a529c"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/katex.min.js?v=be8ff15f"></script>
+      <script src="_static/auto-render.min.js?v=ad136472"></script>
+      <script src="_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to write INPUT file" href="input.html" />
+    <link rel="prev" title="欢迎使用 WannierPy" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            wannier_py
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">核心文档</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Symbol Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#berry-phase-and-berry-connection">Berry Phase and Berry Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">How to write INPUT file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#input">INPUT文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#wannier90">wannier90接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input.html#id1">所需数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#id4">体系的微调</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to insatll this package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#python">安装Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#wannier-py">安装wannier_py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">All parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id1">计算开关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#shg">SHG参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id2">霍尔效应参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id3">物理效应计算分量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id4">并行参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id5">内存监视设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#wannier90">wannier90参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id6">投影参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#vasp">VASP参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#deeph">DEEPH参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id7">模型哈密顿量参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id8">体系补充信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#k">K点相关参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id9">能量和频率参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id10">误差参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#id11">输入输出参数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wannier_py.html">wannier_py package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-berry-common-module">wannier_py.berry_common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpv-module">wannier_py.bpv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-bpve-module">wannier_py.bpve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-eig-module">wannier_py.eig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-excition-module">wannier_py.excition module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-fourier-module">wannier_py.fourier module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-hc-module">wannier_py.hc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-input-module">wannier_py.input module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-interface-deeph-module">wannier_py.interface_deeph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-main-module">wannier_py.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-model-ham-module">wannier_py.model_ham module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-multitask-module">wannier_py.multitask module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-output-to-file-module">wannier_py.output_to_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parallel-module">wannier_py.parallel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-parameter-module">wannier_py.parameter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-print-r-module">wannier_py.print_r module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-shg-module">wannier_py.shg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-supercell-module">wannier_py.supercell module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#wannier-py-utility-module">wannier_py.utility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wannier_py.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html">消除较远原子间的相互作用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id2">现象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#input">示例INPUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id3">可能的原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id4">可能的方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="closet.html#nlo">模型计算NLO的可靠性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#model-hr">接口-model-hr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="closet.html#id5">示例INPUT</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">wannier_py</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Symbol Explanation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/symbol.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="symbol-explanation">
+<h1>Symbol Explanation<a class="headerlink" href="#symbol-explanation" title="Link to this heading"></a></h1>
+<section id="berry-phase-and-berry-connection">
+<h2>Berry Phase and Berry Connection<a class="headerlink" href="#berry-phase-and-berry-connection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>符号</p></th>
+<th class="head"><p>含义</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math">\(n, m, l\)</span></p></td>
+<td><p>表示band或者wannier function的指标</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(\partial_\alpha\)</span></p></td>
+<td><p>表示对<span class="math">\(k_\alpha\)</span>方向的偏导数 <span class="math">\(\partial_{k_\alpha}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(\alpha, \beta, \cdots\)</span> 或a, b, c</p></td>
+<td><p>表示方向指标</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(O\)</span></p></td>
+<td><p>算符</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(\mathcal{H}, r^{\alpha}\)</span></p></td>
+<td><p>哈密顿量算符, 位置算符</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(H_{Rnm}\)</span></p></td>
+<td><p>以wannier函数为基的哈密顿量矩阵<span class="math">\(\Braket{0n|\mathcal{H}|Rm}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(A^{\alpha}_{Rnm}\)</span></p></td>
+<td><p>以wannier函数为基的位置矩阵<span class="math">\(\Braket{0n|r^\alpha|Rm}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(H^{(W)}_{nm}, A^{(W)}_{\alpha nm}\)</span></p></td>
+<td><p>类布洛赫基下的哈密顿量, 位置矩阵</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(\varepsilon_{kn}, U_{knm}\)</span></p></td>
+<td><p>类布洛赫基转换为布洛赫基产生的特征值(能量本征值)和特征向量</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(H^{(H)}_{nm}=[U^\dagger H_{}^{(W)}U]_{nm}\)</span></p></td>
+<td><p>布洛赫基下的哈密顿量, 常常略去<span class="math">\((H)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(A^{(H)}_{\alpha nm}=[U^\dagger A_\alpha^{(W)}U]_{nm}\)</span></p></td>
+<td><p>布洛赫基下的位置矩阵, 常常略去<span class="math">\((H)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(H^{\alpha}_{nm}=[U^\dagger \partial_\alpha H^{(W)}U]_{nm}\)</span></p></td>
+<td><p>布洛赫基下的哈密顿量的导数</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(A^{\alpha\beta}_{ nm}=[U^\dagger \partial_\beta A_\alpha^{(W)}U]_{nm}\)</span></p></td>
+<td><p>布洛赫基下的位置矩阵的导数</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(H^{\alpha\beta}_{ nm}=[U^\dagger \partial_{\alpha\beta} H^{(W)}U]_{nm}\)</span></p></td>
+<td><p>布洛赫基下的哈密顿量矩阵的二阶导数</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(\xi^{\alpha}_{nm}\)</span></p></td>
+<td><p>Berry connection <span class="math">\(i\Braket{u_{n_k}|\partial_\alpha|u_{m_k}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(\omega_{nm}\)</span></p></td>
+<td><p>能量差 <span class="math">\(\varepsilon_n - \varepsilon_m\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(v^\alpha_{nm}\)</span></p></td>
+<td><p>速度矩阵元速度</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math">\(r^{\alpha ;\beta}_{nm}\)</span></p></td>
+<td><p>Berry connection广义导数的矩阵元</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math">\(\Delta^\alpha_{nm}=v^\alpha_{nn}-v^\alpha_{mm}\)</span></p></td>
+<td><p>群速度</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>表 1: 本文使用的数学符号及其含义</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="欢迎使用 WannierPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="How to write INPUT file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Chengzhi Wu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
