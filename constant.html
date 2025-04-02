@@ -559,8 +559,9 @@
 <div class="math">
 \[\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)\]</div>
 <p>where <span class="math">\(L^o\)</span> is the orbital angular momentum operator.</p>
-<p>In code:
-$<span class="math">\(J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\)</span>$</p>
+<p>In code:</p>
+<div class="math">
+\[J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\]</div>
 <div class="math">
 \[L^{c}_{nm} = \text{Const}\cdot \epsilon^{abc}\  \text{lm}\sum_{l\ne n,m}v^a_{nl}v^b_{lm}\left(\frac{1}{\varepsilon_{ln}+i\eta}+\frac{1}{\varepsilon_{lm}+i\eta}\right)\]</div>
 <p>where <span class="math">\(\text{Const}\)</span> is <span class="math">\(\frac{2 m_e e}{\hbar^2} \cdot 10^{-20}\)</span>, <span class="math">\(\epsilon^{abc}\)</span> is the Levi-Civita symbol, and <span class="math">\(v^a_{nl}\)</span> is the velocity matrix element between orbitals
@@ -578,9 +579,8 @@ $<span class="math">\(J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\)</span>$
 <h1>Implementation of Orbital Hall Effect<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
 <p>The Orbital Hall Effect calculation is implemented through the <code class="docutils literal notranslate"><span class="pre">calc_Orbital_Hall_dim3</span></code> function which computes the Orbital Hall conductivity tensor. The mathematical formulation follows:</p>
 <div class="math">
-\[\sigma_{abc}(E_F) = \text{Const} \cdot 10^8 \sum_{k, n} f_{nk}(E_F) \sum_{m \neq n} \text{Im} \left[ \frac{J^{ac}_{nm}(k) \cdot V^b_{mn}(k)}{(E_{nk} - E_{mk} + i\eta)^2} \right]\]</div>
-<p>where <span class="math">\(\text{Const}\)</span> is <span class="math">\(-392.5172\)</span>.
-<span class="math">\(-\frac{2e^2}{\hbar}\)</span></p>
+\[\sigma_{abc}(E_F) = \text{Const} \cdot \sum_{k, n} f_{nk}(E_F) \sum_{m \neq n} \text{Im} \left[ \frac{J^{ac}_{nm}(k) \cdot V^b_{mn}(k)}{(E_{nk} - E_{mk} + i\eta)^2} \right]\]</div>
+<p>where <span class="math">\(\text{Const}\)</span> is <span class="math">\(-\frac{2e^2}{\hbar}\)</span></p>
 <p>The algorithm proceeds in two main steps:</p>
 <ol class="arabic simple">
 <li><p>Calculate band and k-point resolved contributions to the Hall effect</p></li>
