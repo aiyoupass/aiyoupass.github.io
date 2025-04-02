@@ -1,15 +1,30 @@
 # All parameters
 ## 计算开关参数
 
-| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
-|----------|----------|------|--------|------|
-| INTERFACE | string | 数据接口类型 | "w90" | 目前支持"w90", "vasp", "deeph", "model", 大小写不敏感 |
-| EIGENVALUE | true/false | 能量本征值计算的开关 | false | |
-| BPVE | true/false | BPVE计算的开关 | false | |
-| SHG | true/false | SHG计算的开关 | false | |
-| BPV | true/false | BPV计算的开关 | false | |
-| HALL | true/false | Hall effect计算的开关 | | |
-| PRINT | true/false | 打印中间物理量开关 | false | |
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释                                                                  |
+|----------|----------|------|--------|---------------------------------------------------------------------|
+| INTERFACE | string | 数据接口类型 | "w90" | 目前支持"w90", "vasp", "deeph", "model", "abacus", "excition_vasp"大小写不敏感 |
+| EIGENVALUE | true/false | 能量本征值计算的开关 | false |                                                                     |
+| BPVE | true/false | BPVE计算的开关 | false |                                                                     |
+| SHG | true/false | SHG计算的开关 | false |                                                                     |
+| BPV | true/false | BPV计算的开关 | false |                                                                     |
+| HALL | true/false | Hall effect计算的开关 | |                                                                     |
+| PRINT | true/false | 打印中间物理量开关 | false |                                                                     |
+
+
+## 绘图参数
+
+| 参数名称 | 数据类型 | 说明                | 默认值 | 解释                            |
+|----------|----------|-------------------|--------|-------------------------------|
+| PLOT_Y_AXIS | [float, float] | 能带Y轴范围            | [-100, 100] | 设置能带图像Y轴的可能最小和最大值, 若          |
+| PLOT_SAME_AXIS | true/false | 一张图的多个子图是否使用相同坐标轴 | false | 不使用相同坐标轴                      |
+| PLOT_MIN_AXIS | float | 一张图的多个子图使用的最小坐标轴  | -1 | -1表示(对shg, hall...各自)使用其默认最小值 |
+
+## 计算控制参数
+
+| 参数名称 | 数据类型 | 说明              | 默认值 | 解释      |
+|----------|----------|-----------------|--------|---------|
+| SSR | true/false | 使用广义导数计算方法(SSR) | true | 使用SSR方法 |
 
 
 ## SHG参数
@@ -28,6 +43,7 @@
 |----------|----------|------|--------|------|
 | HALL_K_RESOLVED | true/false | 按K点分辨的Hall效应 | false | |
 | CURRENT_OPERATOR | int | 使用charge/spin/orbit流算符 | 0 | 0为使用charge流算符, 若为1则为spin流算符 |
+| CURRENT_DIRECTION | int | 电流方向 | 2 | 设置电流的方向（0=x, 1=y, 2=z） |
 | SIGMA_OR_X | true/false | 是否使用Sigma或X算符 | false | 两种流霍尔效应的公式 |
 
 ## 物理效应计算分量
@@ -71,13 +87,8 @@
 | W90_INPUT_DATA_SOURCE | [int, int, int] | Wannier90数据输入源 | [1, 2, 2] | 表示哈密顿量、位置矩阵和wannier centres分别从0(hr)1(tb)2(AAR)3(wout)4(POSCAR)中读入 |
 | W90_WC_TRANS | [float, float, float] | 对wannier centres作的倍数修正 | [1, 1, 1] | 表示wannier centres的x, y, z坐标分别乘以1 |
 | CELL_CENTER | float | 对wannier centres作的平移修正 | 0.0 | 相当于wannier_centres-=CELL_CENTER |
-| DELETE_WS_CELLS_COUPLE_Z | true/false | 删除z方向各个cell间的相互作用 | false | 设置为true能把bulk的体系转换为slab的体系 |
 | TWO_TB | true/false | 使用spin-up/dn两份单独的输入 | FALSE | |
-CHECK_HERMITIAN
 | CHECK_HERMITIAN | true/false | 检查哈密顿量是否厄米 | FALSE | 仅当R=0时非零哈密顿量厄米 |
-| SUPERCELL_ENABLED | true/false | 开启超胞计算 | FALSE | |
-| SUPERCELL_BUILD_MATRIX | [int, int, int] | 超胞扩展矩阵 | [1, 1, 2] | 相当于在z方向扩展为两倍 |
-| SOC_TO_NONSOC | true/false | 是否从SOC体系转换为非SOC体系 | false | 即保留输入文件中矩阵的spinup-spinup部分 |
 | USE_WANNIER_CENTER | true/false | 是否使用wannier center | true | 即是否使用wannier center构建类布洛赫函数 |
 | USE_WS_DISTANCE | true/false | 是否启用ws_distance修正 | false | 有些体系影响较大，建议开启，需在输入文件路径中放入"wannier90_ws_vec.dat"文件 |
 | USE_DIRECTION | true/false | 是否使用位置矩阵数据开展计算 | true | 影响巨大，默认开启 |
@@ -88,36 +99,59 @@ CHECK_HERMITIAN
 | UP_TB_FILE | string | UP_TB文件名 | wannier90-up_tb.dat | |
 | DN_TB_FILE | string | DN_TB文件名 | wannier90-dn_tb.dat | |
 | POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
+
+
+## 体系调整信息
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
+|----------|----------|------|--------|------|
 | LAYERS_COUPLE_MULTIPLE_FAR | float | 远层间耦合倍数 | 1.0 | 远处层间耦合倍数，0表示不考虑远处层间耦合 |
 | LAYERS_COUPLE_MULTIPLE | float | 近层间耦合倍数 | 1.0 | 层间耦合倍数，0表示不考虑层间耦合 |
 | NUM_CHANGE_INTERACT | int | 近层的最大层数 | 1 | 两层的距离大于1层(即两层之间还有别的层)时被认为是远层耦合 |
+| FAREST_DIS | float | 最远距离阈值 | 35.0 | 默认设置的最远原子对距离阈值 |
+| NONCLOSET_COUPLE_MULTIPLE | float | 超过FAREST_DIS距离的原子对的相互作用倍数 | 1.0 | 默认为不改变相互作用强度 |
+| SOC_TO_NONSOC | true/false | 是否从SOC体系转换为非SOC体系 | false | 即保留输入文件中矩阵的spinup-spinup部分 |
+| SUPERCELL_ENABLED | true/false | 开启超胞计算 | FALSE | |
+| SUPERCELL_BUILD_MATRIX | [int, int, int] | 超胞扩展矩阵 | [1, 1, 2] | 相当于在z方向扩展为两倍 |
+| DELETE_WS_CELLS_COUPLE_Z | true/false | 删除z方向各个cell间的相互作用 | false | 设置为true能把bulk的体系转换为slab的体系 |
+| LIMIT_BAND | true/false | 限制使用部分带(VASP) | false | |
+| LIMIT_BAND_RANGE | [int, int] | 限制带的范围 | [2,12] | |
 
 ## 投影参数
 
-| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
-|----------|----------|------|--------|------|
-| PROJECTION_ENABLED | true/false | 启用投影操作开关 | false | 开启投影开关后下面的设置才生效 |
-| PROJECTION_LAYER_PICK | true/false | 选择投影的层 | -1 | -1是不存在的层, 0是第一层, 设置-1等效于不投影 |
-| PROJECTION_DOUBLE_SIDED | true/false | 是否使用两端作用投影算符 | false | P为投影算符, Pa为对a算符作用一端, PaP为作用两端 |
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释                                         |
+|----------|----------|------|--------|--------------------------------------------|
+| PROJECTION_ENABLED | true/false | 启用投影操作开关 | false | 开启投影开关后下面的设置才生效, 目前只支持wannier90            |
+| PROJECTION_LAYER_PICK | true/false | 选择投影的层 | -1 | -1是不存在的层, 0是第一层, 设置-1等效于不投影                |
+| PROJECTION_DOUBLE_SIDED | true/false | 是否使用两端作用投影算符 | false | P为投影算符, Pa为对a算符作用一端, PaP为作用两端              |
 | PROJECTION_MULTI | true/false | 启用多重投影操作 | false | 程序会分别对多个层进行投影,需要同时设置PROJECTION_LAYER_RANGE |
-| PROJECTION_LAYER_RANGE | true/false | 投影层范围设置 | [0, 5] | 区间左闭右开, 程序会分别对0,1,2,3,4层进行投影 |
+| PROJECTION_LAYER_RANGE | true/false | 投影层范围设置 | [0, 5] | 区间左闭右开, 程序会分别对0,1,2,3,4层进行投影               |
 
 
 ## VASP参数
 
 | 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
 |----------|----------|------|--------|------|
-| LIMIT_BAND_VASP | true/false | 限制使用部分带(VASP) | false | |
-| LIMIT_BAND_RANGE_VASP | [int, int] | 限制带的范围 | [2,12] | |
 | POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
 | USE_P | true/false |是否从vasprun.xml中读取群速度 |  true | |
 | E_SCISSOR | float | 能带剪刀差 | 0.0 | 对能带进行剪刀差修正 |
 
 
 ## DEEPH参数
-| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
-|----------|----------|------|--------|------|
-| PRED_HAM | true/false | 是否使用预测的哈密顿量 | false | 读入DEEPH模型训练/预测的哈密顿量  |
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释                  |
+|----------|----------|------|--------|---------------------|
+| PRED_HAM | true/false | 是否使用预测的哈密顿量 | false | 读入DEEPH模型训练/预测的哈密顿量 |
+| DEEPH_ORBITAL_FILE | string | DEEPH轨道类型文件名 | "orbital_types.dat" | 指定DEEPH轨道类型文件名      |
+
+
+
+## ABACUS参数
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释                  |
+|----------|----------|------|--------|---------------------|
+| PRED_HAM | true/false | 是否使用预测的哈密顿量 | false | 读入DEEPH模型训练/预测的哈密顿量 |
+| ABACUS_HR_FILE | string | ABACUS哈密顿量文件名 | "HR.csr" | ABACUS哈密顿量文件路径      |
+| ABACUS_SR_FILE | string | ABACUS重叠矩阵文件名 | "HR.csr" | ABACUS交叠矩阵文件路径      |
+| ABACUS_ORBITAL_FILE | string | ABACUS轨道文件名 | "Orbital" | ABACUS轨道文件路径        |
+| CIF_FILE | string | CIF结构文件名 | "STRU.cif" | 晶体结构信息文件路径          |
 
 
 ## 模型哈密顿量参数
@@ -126,6 +160,9 @@ CHECK_HERMITIAN
 |----------|----------|------|--------|------|
 | MODEL_HAM_PARA_LIST | [[float, …, float], [float...], …] | 模型哈密顿量函数接受的参数值设置 | [[0.5, 0.1], [0.1, 0.05, 0.0]] | 第一个参数有两个设置值，第二个参数有三个设置值，共进行6=2*2次计算 |
 | MODEL_HAM_PARA_NAME | ['string', 'string'] | 模型哈密顿量函数接受的参数值名称 | ['gamma_SP', 'alpha_SO'] | 第一个参数的名称是'gamma_SP' |
+| MODEL_FROM_HR | true/false | 是否从HR文件读取模型哈密顿量 | false | 为false时，从model_hamilton函数读取模型 |
+| POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
+
 
 ## 体系补充信息
 
@@ -133,14 +170,12 @@ CHECK_HERMITIAN
 |----------|----------|------|--------|------|
 | ORBIT_LIST | [int, ...] | 轨道成分列表 | [0, 1, 0, 1] | 轨道为s，p，s，p, 共8=1+3+3+1个轨道 |
 | E_FERMI | float | 费米能级 | 0.0 | |
+| DOUBLE_DEG | true/false | 系统具有二重简并 | false | |
 | SOC | true/false | 体系是否存在自旋轨道耦合 | false | |
 | LAYER_OF_ORBITS | [int...] | 每个轨道分别在哪一层 | [0] | [0, 1, 3, 2]表示四个轨道分别在0, 1, 3, 2层 |
 | ORBITS_OF_LAYERS | [[int...]...] | 每一层有哪些轨道 | | [[1, 2], [3, 4]]（轨道从1开始即使程序是从0开始）表示layer0有0,1两个轨道, layer1有2, 3两个轨道 |
 | LAYER_OF_ATOMS | [int...] | 每个原子分别在哪一层 |  | 无默认值, 需要同时设置ORBIT_LIST |
 | ATOMS_OF_LAYERS | [[int...]...] | 每一层有哪些原子 | | 无默认值, 需要同时设置ORBIT_LIST, 这四个层相关的参数仅需填一个|
-| DOUBLE_DEG | true/false | 系统具有二重简并 | false | |
-
-
 
 
 ## K点相关参数
@@ -178,12 +213,12 @@ CHECK_HERMITIAN
 
 ## 误差参数
 
-| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
-|----------|----------|------|--------|------|
-| EPS_DELTA | float | 误差容忍度的Delta值 | 0.05 | |
-| EPS_ETA | float | 误差容忍度的Eta值 | 0.02 | |
-| EPS_DEG | float | 误差容忍度的Deg值 | 1e-5 | |
-| EPS_INF | int | 误差容忍度的无穷大值 | 1e60 | |
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释         |
+|----------|----------|------|--------|------------|
+| EPS_DELTA | float | 误差容忍度的Delta值 | 0.05 |            |
+| EPS_ETA | float | 误差容忍度的Eta值 | 0.02 |            |
+| EPS_DEG | float | 误差容忍度的Deg值 | 1e-5 |            |
+| EPS_INF | int | 无穷大值 | 1e60 | 设置1e60为无穷大 |
 
 ## 输入输出参数
 
@@ -196,3 +231,16 @@ CHECK_HERMITIAN
 | OUTPUT_NPY | true/false | 是否输出.npy文件 | true | numpy的二进制文件输出结果的开关 |
 | CHECK_HERMITIAN | true/false | 是否检查哈密顿量等输入矩阵是否为厄米矩阵 | false | |
 | CHECK_DEG | true/false | 是否检查哈密顿量算出的哈密顿量的二重简并性 | false | |
+
+
+## BPV参数
+| 参数名称 | 数据类型 | 说明 | 默认值 | 解释          |
+|----------|----------|------|--------|-------------|
+| LPL_PLUS_CPL | true/false | 是否使用LPL加CPL方法 | true | 线偏振光加圆偏振光   |
+| USE_ADD | true/false | 是否使用加法方法 | false |  |
+| SHOW_CPL | true/false | 是否显示CPL | false |  |
+
+## excition_vasp参数
+| 参数名称           | 数据类型   | 说明             | 默认值        | 解释          |
+|----------------|--------|----------------|------------|-------------|
+| BSEFATBAND_FILE | string | BSEFATBAND的文件名 | BSEFATBAND |             |
