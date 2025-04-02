@@ -15,6 +15,7 @@ install.md
 parameters.md
 wannier_py.rst
 closet.md
+constant.md
 ```
 
 [API 参考](wannier_py.rst)
