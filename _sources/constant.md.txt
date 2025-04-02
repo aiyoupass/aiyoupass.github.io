@@ -28,9 +28,9 @@ where $L^s$ is the spin operator.
 
 In code:
 
-$$J^{a,s}_{nm}=\frac{1}{2}(\sigma^s v^a + v^a \sigma^s)_{nm}$$
+$$J^{a,s}_{nm}=\frac{1}{2}(S^s v^a + v^a S^s)_{nm}$$
 
-where $\sigma^s$ represents the Pauli matrices:
+where $S^s$ is $\frac{1}{2}\sigma^s$, $\sigma^s$ represents the Pauli matrices:
 
 ```python
 import numpy as np
