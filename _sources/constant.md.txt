@@ -10,33 +10,44 @@ Energy in ABACUS is measured in Ry
 ## Hall effect
 ### Charge current
 In physics:
+
 $$\hat{J}=e\hat{v}$$ 
 
 In code:
+
 $$J^a_{nm}=\frac{1}{2}(I v^a + v^a I)_{nm}$$
+
 where $I$ is the identity matrix.
 
 ### Spin current
 In physics:
+
 $$\hat{J^s}=\frac{1}{2} (L^s\hat{v} + \hat{v}L^s)$$ 
+
 where $L^s$ is the spin operator.
 
 In code:
+
 $$J^{a,s}_{nm}=\frac{1}{2}(\sigma^s v^a + v^a \sigma^s)_{nm}$$
+
 where $\sigma^s$ represents the Pauli matrices:
 
+```python
 import numpy as np
 pauli_x = np.array([[0, 1], [1, 0]], dtype=complex)
 pauli_y = np.array([[0, -1j], [1j, 0]], dtype=complex)
 pauli_z = np.array([[1, 0], [0, -1]], dtype=complex)
 pauli_i = np.array([[1, 0], [0, 1]], dtype=complex)
-
+```
 ### Orbital current (form1)
 In physics:
+
 $$\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)$$ 
+
 where $L^o$ is the orbital angular momentum operator.
 
 In code:
+
 $$J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}$$
 
 where $L^o$ represents the matrix of interactions between orbitals:
@@ -44,28 +55,34 @@ where $L^o$ represents the matrix of interactions between orbitals:
 - For `s` orbitals: $L_z$, $L_x$, $L_y$ matrices are zero.
 
 - For `p` orbitals: $L^{p}_z$, $L^{p}_x$, $L^{p}_y$ matrices are:
-  $$L^{p}_z = \begin{bmatrix}0& -i& 0\\i& 0& 0\\ 0& 0& 0\end{bmatrix}, 
+$L^{p}_z = \begin{bmatrix}0& -i& 0\\i& 0& 0\\ 0& 0& 0\end{bmatrix}, 
     L^{p}_x = \begin{bmatrix}0& 0& i\\0& 0& 0\\ -i& 0& 0\end{bmatrix}, 
-    L^{p}_y = \begin{bmatrix}0& 0& 0\\0& 0& -i\\ 0& i& 0\end{bmatrix}$$
-  where the basis is ordered as $p_z$, $p_x$, $p_y$.
+    L^{p}_y = \begin{bmatrix}0& 0& 0\\0& 0& -i\\ 0& i& 0\end{bmatrix}$
+
+- where the basis is ordered as $p_z$, $p_x$, $p_y$.
 
 - For `d` orbitals: $L_z$, $L_x$, $L_y$ follow similar patterns.
 
 The complete $L^o$ matrix is constructed by combining the individual $L$ matrices according to the orbital composition of the system.
 
 For example, in a system with the orbital sequence `s, p, s, p`, the $L^o_z$ matrix would have the form: 
+
 $$\begin{bmatrix}0& 0 & 0& 0\\0& L^{(p)}_z& 0& 0\\ 0& 0& 0& 0\\0& 0& 0& L^{(p)}_z\end{bmatrix}$$
 
 ### Orbital current (form2)
 In physics:
+
 $$\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)$$ 
+
 where $L^o$ is the orbital angular momentum operator.
 
 In code:
 $$J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}$$
 
 $$L^{c}_{nm} = \text{Const}\cdot \epsilon^{abc}\  \text{lm}\sum_{l\ne n,m}v^a_{nl}v^b_{lm}\left(\frac{1}{\varepsilon_{ln}+i\eta}+\frac{1}{\varepsilon_{lm}+i\eta}\right)$$
-where $\text{Const}$ is $\frac{2 m_e e}{\hbar^2} \cdot 10^{-20}$, $\epsilon^{abc}$ is the Levi-Civita symbol, and $v^a_{nl}$ is the velocity matrix element between orbitals $n$ and $l$ in direction $a$.
+
+where $\text{Const}$ is $\frac{2 m_e e}{\hbar^2} \cdot 10^{-20}$, $\epsilon^{abc}$ is the Levi-Civita symbol, and $v^a_{nl}$ is the velocity matrix element between orbitals 
+$n$ and $l$ in direction $a$.
 
 ## Hall effect
 ## Implementation of Orbital Hall Effect

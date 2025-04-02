@@ -503,57 +503,68 @@
 <h2>Hall effect<a class="headerlink" href="#hall-effect" title="Link to this heading"></a></h2>
 <section id="charge-current">
 <h3>Charge current<a class="headerlink" href="#charge-current" title="Link to this heading"></a></h3>
-<p>In physics:
-$<span class="math">\(\hat{J}=e\hat{v}\)</span>$</p>
-<p>In code:
-$<span class="math">\(J^a_{nm}=\frac{1}{2}(I v^a + v^a I)_{nm}\)</span><span class="math">\(
-where \)</span>I$ is the identity matrix.</p>
+<p>In physics:</p>
+<div class="math">
+\[\hat{J}=e\hat{v}\]</div>
+<p>In code:</p>
+<div class="math">
+\[J^a_{nm}=\frac{1}{2}(I v^a + v^a I)_{nm}\]</div>
+<p>where <span class="math">\(I\)</span> is the identity matrix.</p>
 </section>
 <section id="spin-current">
 <h3>Spin current<a class="headerlink" href="#spin-current" title="Link to this heading"></a></h3>
-<p>In physics:
-$<span class="math">\(\hat{J^s}=\frac{1}{2} (L^s\hat{v} + \hat{v}L^s)\)</span><span class="math">\( 
-where \)</span>L^s$ is the spin operator.</p>
-<p>In code:
-$<span class="math">\(J^{a,s}_{nm}=\frac{1}{2}(\sigma^s v^a + v^a \sigma^s)_{nm}\)</span><span class="math">\(
-where \)</span>\sigma^s$ represents the Pauli matrices:</p>
-<p>import numpy as np
-pauli_x = np.array([[0, 1], [1, 0]], dtype=complex)
-pauli_y = np.array([[0, -1j], [1j, 0]], dtype=complex)
-pauli_z = np.array([[1, 0], [0, -1]], dtype=complex)
-pauli_i = np.array([[1, 0], [0, 1]], dtype=complex)</p>
+<p>In physics:</p>
+<div class="math">
+\[\hat{J^s}=\frac{1}{2} (L^s\hat{v} + \hat{v}L^s)\]</div>
+<p>where <span class="math">\(L^s\)</span> is the spin operator.</p>
+<p>In code:</p>
+<div class="math">
+\[J^{a,s}_{nm}=\frac{1}{2}(\sigma^s v^a + v^a \sigma^s)_{nm}\]</div>
+<p>where <span class="math">\(\sigma^s\)</span> represents the Pauli matrices:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">pauli_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">pauli_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">pauli_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">pauli_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="orbital-current-form1">
 <h3>Orbital current (form1)<a class="headerlink" href="#orbital-current-form1" title="Link to this heading"></a></h3>
-<p>In physics:
-$<span class="math">\(\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)\)</span><span class="math">\( 
-where \)</span>L^o$ is the orbital angular momentum operator.</p>
-<p>In code:
-$<span class="math">\(J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\)</span>$</p>
+<p>In physics:</p>
+<div class="math">
+\[\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)\]</div>
+<p>where <span class="math">\(L^o\)</span> is the orbital angular momentum operator.</p>
+<p>In code:</p>
+<div class="math">
+\[J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\]</div>
 <p>where <span class="math">\(L^o\)</span> represents the matrix of interactions between orbitals:</p>
 <ul class="simple">
 <li><p>For <code class="docutils literal notranslate"><span class="pre">s</span></code> orbitals: <span class="math">\(L_z\)</span>, <span class="math">\(L_x\)</span>, <span class="math">\(L_y\)</span> matrices are zero.</p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">p</span></code> orbitals: <span class="math">\(L^{p}_z\)</span>, <span class="math">\(L^{p}_x\)</span>, <span class="math">\(L^{p}_y\)</span> matrices are:
-$<span class="math">\(L^{p}_z = \begin{bmatrix}0&amp; -i&amp; 0\\i&amp; 0&amp; 0\\ 0&amp; 0&amp; 0\end{bmatrix}, 
+<span class="math">\(L^{p}_z = \begin{bmatrix}0&amp; -i&amp; 0\\i&amp; 0&amp; 0\\ 0&amp; 0&amp; 0\end{bmatrix}, 
   L^{p}_x = \begin{bmatrix}0&amp; 0&amp; i\\0&amp; 0&amp; 0\\ -i&amp; 0&amp; 0\end{bmatrix}, 
-  L^{p}_y = \begin{bmatrix}0&amp; 0&amp; 0\\0&amp; 0&amp; -i\\ 0&amp; i&amp; 0\end{bmatrix}\)</span><span class="math">\(
-where the basis is ordered as \)</span>p_z<span class="math">\(, \)</span>p_x<span class="math">\(, \)</span>p_y$.</p></li>
+  L^{p}_y = \begin{bmatrix}0&amp; 0&amp; 0\\0&amp; 0&amp; -i\\ 0&amp; i&amp; 0\end{bmatrix}\)</span></p></li>
+<li><p>where the basis is ordered as <span class="math">\(p_z\)</span>, <span class="math">\(p_x\)</span>, <span class="math">\(p_y\)</span>.</p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">d</span></code> orbitals: <span class="math">\(L_z\)</span>, <span class="math">\(L_x\)</span>, <span class="math">\(L_y\)</span> follow similar patterns.</p></li>
 </ul>
 <p>The complete <span class="math">\(L^o\)</span> matrix is constructed by combining the individual <span class="math">\(L\)</span> matrices according to the orbital composition of the system.</p>
-<p>For example, in a system with the orbital sequence <code class="docutils literal notranslate"><span class="pre">s,</span> <span class="pre">p,</span> <span class="pre">s,</span> <span class="pre">p</span></code>, the <span class="math">\(L^o_z\)</span> matrix would have the form:
-$<span class="math">\(\begin{bmatrix}0&amp; 0 &amp; 0&amp; 0\\0&amp; L^{(p)}_z&amp; 0&amp; 0\\ 0&amp; 0&amp; 0&amp; 0\\0&amp; 0&amp; 0&amp; L^{(p)}_z\end{bmatrix}\)</span>$</p>
+<p>For example, in a system with the orbital sequence <code class="docutils literal notranslate"><span class="pre">s,</span> <span class="pre">p,</span> <span class="pre">s,</span> <span class="pre">p</span></code>, the <span class="math">\(L^o_z\)</span> matrix would have the form:</p>
+<div class="math">
+\[\begin{bmatrix}0& 0 & 0& 0\\0& L^{(p)}_z& 0& 0\\ 0& 0& 0& 0\\0& 0& 0& L^{(p)}_z\end{bmatrix}\]</div>
 </section>
 <section id="orbital-current-form2">
 <h3>Orbital current (form2)<a class="headerlink" href="#orbital-current-form2" title="Link to this heading"></a></h3>
-<p>In physics:
-$<span class="math">\(\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)\)</span><span class="math">\( 
-where \)</span>L^o$ is the orbital angular momentum operator.</p>
+<p>In physics:</p>
+<div class="math">
+\[\hat{J^o}=\frac{1}{2} (L^o\hat{v} + \hat{v}L^o)\]</div>
+<p>where <span class="math">\(L^o\)</span> is the orbital angular momentum operator.</p>
 <p>In code:
 $<span class="math">\(J^{a,o}_{nm}=\frac{1}{2}(L^o v^a + v^a L^o)_{nm}\)</span>$</p>
 <div class="math">
 \[L^{c}_{nm} = \text{Const}\cdot \epsilon^{abc}\  \text{lm}\sum_{l\ne n,m}v^a_{nl}v^b_{lm}\left(\frac{1}{\varepsilon_{ln}+i\eta}+\frac{1}{\varepsilon_{lm}+i\eta}\right)\]</div>
-<p>where <span class="math">\(\text{Const}\)</span> is <span class="math">\(\frac{2 m_e e}{\hbar^2} \cdot 10^{-20}\)</span>, <span class="math">\(\epsilon^{abc}\)</span> is the Levi-Civita symbol, and <span class="math">\(v^a_{nl}\)</span> is the velocity matrix element between orbitals <span class="math">\(n\)</span> and <span class="math">\(l\)</span> in direction <span class="math">\(a\)</span>.</p>
+<p>where <span class="math">\(\text{Const}\)</span> is <span class="math">\(\frac{2 m_e e}{\hbar^2} \cdot 10^{-20}\)</span>, <span class="math">\(\epsilon^{abc}\)</span> is the Levi-Civita symbol, and <span class="math">\(v^a_{nl}\)</span> is the velocity matrix element between orbitals
+<span class="math">\(n\)</span> and <span class="math">\(l\)</span> in direction <span class="math">\(a\)</span>.</p>
 </section>
 </section>
 <section id="id1">
