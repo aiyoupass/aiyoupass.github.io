@@ -15,6 +15,66 @@ wannier90采用正交的原子轨道基。
 我们用参数 W90_INPUT_DATA_SOURCE 控制从哪里文件读取wannier90的输出数据.
 该参数的默认值为`W90_INPUT_DATA_SOURCE=[1, 2, 3]`. 即哈密顿量矩阵从 `seedname_tb.dat`中获取，位置算符矩阵从`AAR.dat`中获取，wannier centres从`seedname_wout.dat`中获取.
 
+
+### 如何产生`AAR.dat`
+修改wannier90-3.1.0的`src/postw90/berry.F90`文件, 在文件中的第`1616`行添加如下代码
+```fortran
+    if (all(kpt == 0.0)) then
+      filename = 'AAR.dat'
+      open(unit=14, file=filename, status='REPLACE', position="append")
+      do r = 1, size(AA_R, 3)
+        do n = 1, size(AA_R, 1)
+          do m = 1, size(AA_R, 2)
+            write(14, '(6E30.20)') real(AA_R(n, m, r, 1)), aimag(AA_R(n, m, r, 1)), real(AA_R(n, m, r, 2)), aimag(AA_R(n, m, r, 2)), real(AA_R(n, m, r, 3)), aimag(AA_R(n, m, r, 3))
+          enddo
+        enddo
+      enddo
+      close(unit=14)
+    end if
+```
+在`1616`行添加如上代码后前后代码片段如下
+```fortran
+    allocate (UU(num_wann, num_wann))
+    allocate (AA(num_wann, num_wann, 3))
+    allocate (AA_bar(num_wann, num_wann, 3))
+    allocate (AA_da(num_wann, num_wann, 3, 3))
+    allocate (AA_da_bar(num_wann, num_wann, 3, 3))
+    allocate (HH_da(num_wann, num_wann, 3))
+    allocate (HH_da_bar(num_wann, num_wann, 3))
+    allocate (HH_dadb(num_wann, num_wann, 3, 3))
+    allocate (HH_dadb_bar(num_wann, num_wann, 3, 3))
+    allocate (HH(num_wann, num_wann))
+    allocate (D_h(num_wann, num_wann, 3))
+    allocate (eig(num_wann))
+    allocate (occ(num_wann))
+    allocate (eig_da(num_wann, 3))
+    
+    if (all(kpt == 0.0)) then
+      filename = 'AAR.dat'
+      open(unit=14, file=filename, status='REPLACE', position="append")
+      do r = 1, size(AA_R, 3)
+        do n = 1, size(AA_R, 1)
+          do m = 1, size(AA_R, 2)
+            write(14, '(6E30.20)') real(AA_R(n, m, r, 1)), aimag(AA_R(n, m, r, 1)), real(AA_R(n, m, r, 2)), aimag(AA_R(n, m, r, 2)), real(AA_R(n, m, r, 3)), aimag(AA_R(n, m, r, 3))
+          enddo
+        enddo
+      enddo
+      close(unit=14)
+    end if
+    
+    ! Initialize shift current array at point k
+    sc_k_list = 0.d0
+```
+加入的该代码相比原始代码仅仅多了在运行`sc`(shift current)task时生成`AAR.dat`的功能, 没有其他任何改变.
+
+重新编译并安装wannier90-3.1.0, 运行可执行文件`postw90.x`即可在当前目录下生成`AAR.dat`文件. 所需的`seedname.win`中参数如下
+```
+berry = true
+berry_task = sc
+berry_kmesh = 1 1 1
+```
+使用`1 1 1`的`kmesh`可以避免在产生`AAR.dat`过程中花费时间计算`shift current`文件.
+
 接下来我会详细介绍这三个文件中的数据的物理意义和相关问题.
 #### 哈密顿量矩阵
 
