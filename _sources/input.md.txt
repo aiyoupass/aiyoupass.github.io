@@ -13,7 +13,7 @@ INPUT文件控制计算的所有设置, 以及一些必要的输入数据.
 wannier90采用正交的原子轨道基。
 ### 所需数据
 我们用参数 W90_INPUT_DATA_SOURCE 控制从哪里文件读取wannier90的输出数据.
-该参数的默认值为`W90_INPUT_DATA_SOURCE=[1, 2, 3]`. 即哈密顿量矩阵从 `seedname_tb.dat`中获取，位置算符矩阵从`AAR.dat`中获取，wannier centres从`seedname_wout.dat`中获取.
+该参数的默认值为`W90_INPUT_DATA_SOURCE=[1, 2, 3]`. 即哈密顿量矩阵从 `seedname_tb.dat`中获取，位置算符矩阵从`AAR.dat`中获取，wannier centres从`seedname.wout`中获取.
 
 
 ### 如何产生`AAR.dat`

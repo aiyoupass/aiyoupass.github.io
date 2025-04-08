@@ -82,23 +82,23 @@
 
 ## wannier90参数
 
-| 参数名称 | 数据类型 | 说明 | 默认值 | 解释 |
-|----------|----------|------|--------|------|
-| W90_INPUT_DATA_SOURCE | [int, int, int] | Wannier90数据输入源 | [1, 2, 2] | 表示哈密顿量、位置矩阵和wannier centres分别从0(hr)1(tb)2(AAR)3(wout)4(POSCAR)中读入 |
-| W90_WC_TRANS | [float, float, float] | 对wannier centres作的倍数修正 | [1, 1, 1] | 表示wannier centres的x, y, z坐标分别乘以1 |
-| CELL_CENTER | float | 对wannier centres作的平移修正 | 0.0 | 相当于wannier_centres-=CELL_CENTER |
-| TWO_TB | true/false | 使用spin-up/dn两份单独的输入 | FALSE | |
-| CHECK_HERMITIAN | true/false | 检查哈密顿量是否厄米 | FALSE | 仅当R=0时非零哈密顿量厄米 |
-| USE_WANNIER_CENTER | true/false | 是否使用wannier center | true | 即是否使用wannier center构建类布洛赫函数 |
-| USE_WS_DISTANCE | true/false | 是否启用ws_distance修正 | false | 有些体系影响较大，建议开启，需在输入文件路径中放入"wannier90_ws_vec.dat"文件 |
-| USE_DIRECTION | true/false | 是否使用位置矩阵数据开展计算 | true | 影响巨大，默认开启 |
-| TB_FILE | string | TB文件名 | wannier90_tb.dat | 结合上面的路径，完整路径为"INPUT_DIR/TB_FILE" |
-| HR_FILE | string | HR文件名 | wannier90_hr.dat | |
+| 参数名称 | 数据类型 | 说明 | 默认值                  | 解释 |
+|----------|----------|------|----------------------|------|
+| W90_INPUT_DATA_SOURCE | [int, int, int] | Wannier90数据输入源 | [1, 2, 3]            | 表示哈密顿量、位置矩阵和wannier centres分别从0(hr)1(tb)2(AAR)3(wout)4(POSCAR)中读入 |
+| W90_WC_TRANS | [float, float, float] | 对wannier centres作的倍数修正 | [1, 1, 1]            | 表示wannier centres的x, y, z坐标分别乘以1 |
+| CELL_CENTER | float | 对wannier centres作的平移修正 | 0.0                  | 相当于wannier_centres-=CELL_CENTER |
+| TWO_TB | true/false | 使用spin-up/dn两份单独的输入 | FALSE                | |
+| CHECK_HERMITIAN | true/false | 检查哈密顿量是否厄米 | FALSE                | 仅当R=0时非零哈密顿量厄米 |
+| USE_WANNIER_CENTER | true/false | 是否使用wannier center | true                 | 即是否使用wannier center构建类布洛赫函数 |
+| USE_WS_DISTANCE | true/false | 是否启用ws_distance修正 | false                | 有些体系影响较大，建议开启，需在输入文件路径中放入"wannier90_ws_vec.dat"文件 |
+| USE_DIRECTION | true/false | 是否使用位置矩阵数据开展计算 | true                 | 影响巨大，默认开启 |
+| TB_FILE | string | TB文件名 | wannier90_tb.dat     | 结合上面的路径，完整路径为"INPUT_DIR/TB_FILE" |
+| HR_FILE | string | HR文件名 | wannier90_hr.dat     | |
 | WS_FILE | string | WS文件名 | wannier90_ws_vec.dat | |
-| AAR_FILE | string | AAR文件名 | AAR.dat | |
-| UP_TB_FILE | string | UP_TB文件名 | wannier90-up_tb.dat | |
-| DN_TB_FILE | string | DN_TB文件名 | wannier90-dn_tb.dat | |
-| POSCAR_FILE | string | POSCAR文件名 | POSCAR | |
+| AAR_FILE | string | AAR文件名 | AAR.dat              | |
+| UP_TB_FILE | string | UP_TB文件名 | wannier90-up_tb.dat  | |
+| DN_TB_FILE | string | DN_TB文件名 | wannier90-dn_tb.dat  | |
+| POSCAR_FILE | string | POSCAR文件名 | POSCAR               | |
 
 
 ## 体系调整信息
