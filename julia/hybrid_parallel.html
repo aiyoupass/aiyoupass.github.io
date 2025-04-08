@@ -477,6 +477,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Hybrid MPI+Threading Parallel</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mpi">MPI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-of-hybrid-mpi-threading-parallel">example of Hybrid MPI+Threading Parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hybrid-mpi-threading-matrix-multiplication-benchmark-workflow">Hybrid MPI+Threading Matrix Multiplication Benchmark Workflow</a></li>
 </ul>
 </li>
 </ul>
@@ -748,6 +749,104 @@ mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_
 </div>
 <p>The program generates two large matrices, performs matrix multiplication, and measures the computation time.</p>
 <p><img alt="Efficiency of number of processes" src="../_images/hybrid_scaling.png" /></p>
+</section>
+<section id="hybrid-mpi-threading-matrix-multiplication-benchmark-workflow">
+<h2>Hybrid MPI+Threading Matrix Multiplication Benchmark Workflow<a class="headerlink" href="#hybrid-mpi-threading-matrix-multiplication-benchmark-workflow" title="Link to this heading"></a></h2>
+<section id="parallel-environment-initialization">
+<h3>1. Parallel Environment Initialization<a class="headerlink" href="#parallel-environment-initialization" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>MPI Initialization</strong>
+Calls <code class="docutils literal notranslate"><span class="pre">MPI.Init()</span></code> to initialize the MPI parallel environment, obtains the global communication domain <code class="docutils literal notranslate"><span class="pre">COMM_WORLD</span></code>, and determines the current process rank and total process count <code class="docutils literal notranslate"><span class="pre">size</span></code></p></li>
+<li><p><strong>Thread Resource Detection</strong>
+Uses <code class="docutils literal notranslate"><span class="pre">Threads.nthreads()</span></code> to get the number of available threads for the current process, providing resource information for hybrid parallelism</p></li>
+</ul>
+</section>
+<section id="test-matrix-generation-main-process">
+<h3>2. Test Matrix Generation (Main Process)<a class="headerlink" href="#test-matrix-generation-main-process" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Matrix Memory Allocation</strong>
+The main process (rank=0) creates two N×N random double-precision floating-point matrices A and B
+Matrix element range: [0.0, 1.0), using Julia’s default random number generator</p></li>
+<li><p><strong>Performance Timing</strong>
+Uses <code class="docutils literal notranslate"><span class="pre">MPI.Wtime()</span></code> to record the matrix generation time, accurate to the microsecond level</p></li>
+</ul>
+</section>
+<section id="calculation-task-distribution">
+<h3>3. Calculation Task Distribution<a class="headerlink" href="#calculation-task-distribution" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Row Block Partitioning Strategy</strong>
+Based on the total process count and whether process 0 participates in calculations (<code class="docutils literal notranslate"><span class="pre">use_process0_calculation</span></code> flag), divides the matrix row dimension N into equal or nearly equal blocks
+Uses <code class="docutils literal notranslate"><span class="pre">div</span></code> and modulo operations to achieve load-balanced distribution</p></li>
+<li><p><strong>Communication Range Table</strong>
+Generates <code class="docutils literal notranslate"><span class="pre">start_row</span></code> and <code class="docutils literal notranslate"><span class="pre">end_row</span></code> arrays to record the starting/ending row numbers for each process
+Process 0 can be configured as either a pure scheduler or a computing participant</p></li>
+</ul>
+</section>
+<section id="data-distribution-main-process">
+<h3>4. Data Distribution (Main Process)<a class="headerlink" href="#data-distribution-main-process" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Metadata Sending</strong>
+Sends the number of rows assigned to each worker process (<code class="docutils literal notranslate"><span class="pre">MPI.Send(rows)</span></code>), ensuring correct memory pre-allocation by receivers</p></li>
+<li><p><strong>Matrix Block Transmission</strong>
+Uses <code class="docutils literal notranslate"><span class="pre">MPI.Send()</span></code> to transmit:</p>
+<ol class="arabic simple">
+<li><p>The corresponding row block of matrix A (<code class="docutils literal notranslate"><span class="pre">A[start:end,</span> <span class="pre">:]</span></code>)</p></li>
+<li><p>The complete matrix B
+Uses different message tags (tag=1/2) to distinguish data types</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="parallel-computation-phase">
+<h3>5. Parallel Computation Phase<a class="headerlink" href="#parallel-computation-phase" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Main Process Computation</strong>
+When the main process participates in calculation:</p>
+<ol class="arabic simple">
+<li><p>Computes its assigned matrix block <code class="docutils literal notranslate"><span class="pre">C_local</span> <span class="pre">=</span> <span class="pre">A[start:end,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">B</span></code></p></li>
+<li><p>Uses the <code class="docutils literal notranslate"><span class="pre">&#64;threads</span></code> macro to automatically allocate threads for matrix multiplication</p></li>
+</ol>
+</li>
+<li><p><strong>Worker Process Computation</strong>
+Other processes, after receiving data blocks via <code class="docutils literal notranslate"><span class="pre">MPI.Recv()</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Perform local matrix multiplication <code class="docutils literal notranslate"><span class="pre">C_local</span> <span class="pre">=</span> <span class="pre">A_part</span> <span class="pre">*</span> <span class="pre">B_full</span></code></p></li>
+<li><p>Send results back to the main process (tag=3)</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="result-merging-and-verification-main-process">
+<h3>6. Result Merging and Verification (Main Process)<a class="headerlink" href="#result-merging-and-verification-main-process" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Asynchronous Receiving Mechanism</strong>
+Uses <code class="docutils literal notranslate"><span class="pre">MPI.Irecv!()</span></code> for non-blocking reception of worker process results, ensuring data integrity with <code class="docutils literal notranslate"><span class="pre">MPI.Wait!()</span></code></p></li>
+<li><p><strong>Global Matrix Reconstruction</strong>
+Fills the received sub-matrix blocks into the corresponding positions of result matrix C according to row numbers</p></li>
+</ul>
+</section>
+<section id="performance-statistics-output">
+<h3>7. Performance Statistics Output<a class="headerlink" href="#performance-statistics-output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Timing Statistics</strong>
+Calculates total elapsed time <code class="docutils literal notranslate"><span class="pre">computation_time</span> <span class="pre">=</span> <span class="pre">t_end</span> <span class="pre">-</span> <span class="pre">t_start</span></code>, including communication and computation time</p></li>
+<li><p><strong>Theoretical Computing Power Estimation</strong>
+Based on the formula <code class="docutils literal notranslate"><span class="pre">GFLOPS</span> <span class="pre">=</span> <span class="pre">2*N³</span> <span class="pre">/</span> <span class="pre">(time</span> <span class="pre">*</span> <span class="pre">1e9)</span></code> to calculate floating-point performance
+Considers the difference between actual communication overhead and theoretical peak performance</p></li>
+<li><p><strong>Configuration Report</strong>
+Outputs key parameters such as MPI process count, thread count, matrix memory usage, etc.
+Supports multiple test rounds for average value calculation (<code class="docutils literal notranslate"><span class="pre">num_repeats</span></code> parameter)</p></li>
+</ul>
+</section>
+<section id="resource-release">
+<h3>8. Resource Release<a class="headerlink" href="#resource-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Barrier Synchronization</strong>
+Calls <code class="docutils literal notranslate"><span class="pre">MPI.Barrier()</span></code> after each calculation round to ensure consistent process pacing</p></li>
+<li><p><strong>Environment Cleanup</strong>
+Finally calls <code class="docutils literal notranslate"><span class="pre">MPI.Finalize()</span></code> to safely release MPI resources and terminate the parallel environment</p></li>
+</ul>
+</section>
 </section>
 </section>
 
