@@ -240,4 +240,4 @@ main(20000, true, 10)
 ```
 The program generates two large matrices, performs matrix multiplication, and measures the computation time.
 
-![Efficiency of number of processes](_static/png/hybrid_scaling.png)
+![Efficiency of number of processes](../_static/png/hybrid_scaling.png)
