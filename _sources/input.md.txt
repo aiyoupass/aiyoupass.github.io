@@ -73,7 +73,7 @@ berry = true
 berry_task = sc
 berry_kmesh = 1 1 1
 ```
-使用`1 1 1`的`kmesh`可以避免在产生`AAR.dat`过程中花费时间计算`shift current`文件.
+使用`1 1 1`的`kmesh`可以避免在产生`AAR.dat`过程中花费时间计算`shift current`.
 
 接下来我会详细介绍这三个文件中的数据的物理意义和相关问题.
 #### 哈密顿量矩阵
