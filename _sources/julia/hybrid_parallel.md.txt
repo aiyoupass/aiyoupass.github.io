@@ -67,4 +67,176 @@ and use MPIPreferences(julia package) to set the MPI environment.
 Different MPI implementations have different behaviors. Always use the same implementation to both compile and run your program.
 :::
 
-## 
+## example of Hybrid MPI+Threading Parallel
+```julia
+using MPI
+using LinearAlgebra
+using Printf
+using Base.Threads
+
+function Init_MPI()
+    MPI.Init()
+    comm = MPI.COMM_WORLD
+    rank, size = MPI.Comm_rank(comm), MPI.Comm_size(comm)
+    return comm, rank, size
+end
+
+function Init_Threads()
+    num_threads = Threads.nthreads()
+    return num_threads
+end
+
+function Print_parallel(size, num_threads)
+    println("Hybrid MPI+Threading benchmark with $size MPI processes")
+    println("Each MPI process using $num_threads threads")
+end
+
+
+function Init_Test_Matrices(N)
+    println("Matrix dimensions: $N x $N")
+    t_start = MPI.Wtime()
+    A = rand(Float64, (N, N))
+    B = rand(Float64, (N, N))
+    t_end = MPI.Wtime()
+    println("Matrix generation time: $(t_end - t_start) seconds")
+    return A, B
+end
+
+
+function Init_process_range(N, use_process0_calculation, size)
+    start_row = Array{Int}(undef, size)
+    end_row = Array{Int}(undef, size)
+
+    # Determine number of processes used for calculation
+    calc_processes = use_process0_calculation ? size : size - 1
+
+    # Calculate rows per process
+    rows_per_proc = div(N, calc_processes)
+    remainder = N % calc_processes
+
+    # Calculate start and end rows for each process
+    current_row = 1
+
+    # If not using process 0 for calculation, mark it as inactive
+    if !use_process0_calculation
+        start_row[1] = 0
+        end_row[1] = 0
+        proc_offset = 1
+    else
+        proc_offset = 0
+    end
+
+    # Calculate range for each active process
+    for i in 1:calc_processes
+        proc_idx = i + proc_offset
+        start_row[proc_idx] = current_row
+        proc_rows = rows_per_proc + (i <= remainder ? 1 : 0)
+        end_row[proc_idx] = current_row + proc_rows - 1
+        current_row += proc_rows
+    end
+
+    return start_row, end_row
+end
+
+function Send_Message_to_Process(start_row, end_row, size, comm, A, B)
+    for i in 2:size
+        # Calculate rows for this process
+        start_r = start_row[i]
+        end_r = end_row[i]
+
+        MPI.Send(end_r - start_r + 1, i-1, 0, comm)
+
+        # Send portion of matrix A
+        MPI.Send(A[start_r:end_r, :], i-1, 1, comm)
+
+        # Send full matrix B
+        MPI.Send(B, i-1, 2, comm)
+    end
+end
+
+function Merge_Results(start_row, end_row, size, comm, C_local, N)
+    C = zeros(Float64, (N, N))
+    for i in 1:size
+        start_r, end_r = start_row[i], end_row[i]
+        if i == 1
+            C[start_r:end_r, :] = C_local
+        else
+            C_worker = Matrix{Float64}(undef, end_r - start_r + 1, N)
+            resv = MPI.Irecv!(C_worker, i-1, 3, comm)
+            MPI.Wait!(resv)
+            C[start_r:end_r, :] = C_worker
+        end
+    end
+    return C
+end
+
+function Recv_Message_from_Main(comm, N)
+    proc_rows = MPI.Recv(Int, 0, 0, comm)[1]
+    A_local = Matrix{Float64}(undef, proc_rows, N)
+    B_local = Matrix{Float64}(undef, N, N)
+
+    rreq1 = MPI.Irecv!(A_local, comm; source=0, tag=1)
+    rreq2 = MPI.Irecv!(B_local, comm; source=0, tag=2)
+    MPI.Wait!(rreq1)
+    MPI.Wait!(rreq2)
+    return A_local, B_local
+end
+
+function Static_output(N, computation_time, num_threads, size)
+    total_flops = 2.0 * N^3  # Multiply-add for each element
+    gflops = total_flops / computation_time / 1e9
+
+    # println("\nPerformance Results:")
+    println("Total computation time: $computation_time seconds")
+    # println("Performance: $gflops GFLOPS")
+    # println("Matrix size: $(N*N*8/1e9) GB per matrix")
+    println("MPI Processes: $size, Threads per process: $num_threads")
+end
+
+
+function main(N=10000, use_process0_calculation=true, num_repeats=1)
+    comm, rank, size = Init_MPI()
+    num_threads = Init_Threads()
+    if rank == 0
+        Print_parallel(size, num_threads)
+        num_time = 0
+    end
+    for num in 1:num_repeats
+        if rank == 0
+            println("Repeat $num")
+            A, B = Init_Test_Matrices(N)
+
+            start_row, end_row = Init_process_range(N, use_process0_calculation, size)
+            Send_Message_to_Process(start_row, end_row, size, comm, A, B)
+
+            t_comp_start = MPI.Wtime()
+
+            C_local = A[start_row[1]:end_row[1], :] * B
+
+            C = Merge_Results(start_row, end_row, size, comm, C_local, N)
+
+            t_comp_end = MPI.Wtime()
+
+            computation_time = t_comp_end - t_comp_start
+
+            Static_output(N, computation_time, num_threads, size)
+            num_time += computation_time
+        else
+            A_local, B_local = Recv_Message_from_Main(comm, N)
+
+            C_local = A_local * B_local
+
+            MPI.Send(C_local, 0, 3, comm)
+        end
+        MPI.Barrier(comm)
+    end
+    MPI.Finalize()
+    if rank == 0
+        println("Average computation time: $(num_time / num_repeats) seconds")
+    end
+end
+
+main(20000, true, 10)
+```
+The program generates two large matrices, performs matrix multiplication, and measures the computation time.
+
