@@ -16,6 +16,7 @@ parameters.md
 wannier_py.rst
 closet.md
 constant.md
+julia/*
 ```
 
 [API 参考](wannier_py.rst)
