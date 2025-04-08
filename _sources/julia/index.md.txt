@@ -1,0 +1,10 @@
+# Julia
+
+```{toctree}
+:maxdepth: 2
+:caption: Julia
+:glob:
+
+install.md
+Hybrid_parallel.md
+```
