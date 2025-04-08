@@ -1,0 +1,7 @@
+# Installation of Julia
+## Compile Julia from source
+
+[julia](https://julialang.org/downloads/)
+[github julia](https://github.com/JuliaLang/julia)
+
+I recommend to install Julia from the precompiled binaries, it's easy.

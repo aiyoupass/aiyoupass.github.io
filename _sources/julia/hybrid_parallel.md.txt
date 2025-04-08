@@ -1,0 +1,68 @@
+# Hybrid MPI+Threading Parallel
+
+## MPI
+MPI is a distributed-memory parallel programming model. It provides a standardized message-passing interface that enables multiple processes to communicate and synchronize with each other.
+
+You can use MPI to run multiple processes on a single node or across multiple nodes.
+
+
+As shown below, this MPI program runs on 2 nodes (`-N 2`), with 4 processes per node (`-n 4`) and 28 threads/cores per process (`-c 28`). Since one node has 56 cores, this configuration utilizes 112 cores in total.
+```shell
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -n 4
+#SBATCH -c 28
+#SBATCH -p cp6
+#SBATCH -o log-mpit2.log
+
+source /fs2/software/modules/bashrc
+module add MKL/23.0.0
+module add Intel_compiler/23.0.0
+
+export JULIA_NUM_THREADS=$SLURM_CPUS_PER_TASK  
+
+echo $SLURM_CPUS_PER_TASK
+echo $SLURM_NTASKS
+echo $SLURM_TASKS_PER_NODE
+echo $SLURM_NNODES
+
+
+mpiexecjl -n $SLURM_NTASKS julia mpi-t2.jl > output
+```
+
+### Install `MPI.jl`
+```julia
+using Pkg
+Pkg.add("MPI")
+```
+After installation, you can find the `mpiexecjl` executable in the `~/.julia/packages/MPI/TKXAj/bin` directory. This command functions similarly to the standard `mpiexec/mpirun` commands. Additionally, `mpiexecjl` allows you to run Julia in parallel without needing to load MPI on your server.
+
+There are three popular implementations of the MPI standard: `Intel MPI`, `OpenMPI`, and `MPICH`. You can load any of these implementations and use the `mpirun/mpiexec` command to run Julia programs in parallel.
+```shell
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -n 4
+#SBATCH -c 28
+#SBATCH -p cp6
+#SBATCH -o log-intel24.log    
+
+source /fs2/software/modules/bashrc
+source /fs2/software/intel/2024.0/2024.0/oneapi-vars.sh intel64
+module add MKL/23.0.0
+
+
+export JULIA_NUM_THREADS=$SLURM_CPUS_PER_TASK  
+
+echo $SLURM_CPUS_PER_TASK
+echo $SLURM_NTASKS
+echo $SLURM_TASKS_PER_NODE
+echo $SLURM_NNODES
+
+
+mpirun -n $SLURM_NTASKS julia 2.jl > output
+```
+and use MPIPreferences(julia package) to set the MPI environment.
+
+::: tip
+Different MPI implementations have different behaviors. Always use the same implementation to both compile and run your program.
+:::
