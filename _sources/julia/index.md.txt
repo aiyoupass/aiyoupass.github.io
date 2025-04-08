@@ -6,5 +6,5 @@
 :glob:
 
 install.md
-Hybrid_parallel.md
+hybrid_parallel.md
 ```
